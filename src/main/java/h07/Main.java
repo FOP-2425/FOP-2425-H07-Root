@@ -15,6 +15,11 @@ public class Main {
      * @param args program arguments, currently ignored
      */
     public static void main(String[] args) {
+        NumberExpression[] multiplicationTable = NumberExpressionFactory.littleMultiplicationTable();
+        for (NumberExpression arithmeticExpression : multiplicationTable) {
+            System.out.println(arithmeticExpression.evaluate());
+        }
+
         PeanoNumberExpression three = new ConvertNumberToPeanoExpressionImpl().convert(() -> 3);
         System.out.println(three.evaluate());
 
