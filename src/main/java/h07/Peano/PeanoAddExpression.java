@@ -1,5 +1,8 @@
 package h07.Peano;
 
+import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
+
+@StudentCreationRequired
 public class PeanoAddExpression implements PeanoArithmeticExpression {
     @Override
     public PeanoNumberExpression evaluate(PeanoNumberExpression num1, PeanoNumberExpression num2) {

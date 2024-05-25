@@ -1,7 +1,9 @@
 package h07;
 
 import h07.Peano.PeanoNumberExpression;
+import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
+@StudentCreationRequired
 public interface ConvertNumberToPeanoExpression {
     /**
      * Converts a number expression to a Peano number expression.

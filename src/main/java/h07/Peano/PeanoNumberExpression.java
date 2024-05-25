@@ -1,5 +1,8 @@
 package h07.Peano;
 
+import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
+
+@StudentCreationRequired
 public interface PeanoNumberExpression {
     /**
      * Evaluates the expression represented by this node.

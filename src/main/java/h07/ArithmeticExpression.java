@@ -1,5 +1,8 @@
 package h07;
 
+import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
+
+@StudentCreationRequired
 public interface ArithmeticExpression {
     /**
      * Applies the arithmetic operation to the two numbers.
