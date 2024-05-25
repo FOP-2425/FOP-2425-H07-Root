@@ -15,6 +15,9 @@ public class Main {
      * @param args program arguments, currently ignored
      */
     public static void main(String[] args) {
+        PeanoNumberExpression three = new ConvertNumberToPeanoExpressionImpl().convert(() -> 3);
+        System.out.println(three.evaluate());
+
         PeanoNumberExpression seven = new ConvertNumberToPeanoExpressionImpl().convert(() -> 7);
         PeanoNumberExpression fifteen = new ConvertNumberToPeanoExpressionImpl().convert(() -> 15);
 
