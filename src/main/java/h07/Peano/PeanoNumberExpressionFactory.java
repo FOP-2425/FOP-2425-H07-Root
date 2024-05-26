@@ -1,5 +1,7 @@
 package h07.Peano;
 
+import h07.ConvertNumberToPeanoExpressionImpl;
+import h07.NumberExpression;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import java.util.Arrays;
@@ -20,5 +22,22 @@ public class PeanoNumberExpressionFactory {
             result = operation.evaluate(result, peanoNumberExpression);
         }
         return result;
+    }
+
+    /**
+     * Converts an array of number expressions to an array of Peano number expressions.
+     *
+     * @param numberExpressions the number expressions to convert
+     * @return the converted Peano number expressions
+     */
+    @StudentImplementationRequired
+    public static PeanoNumberExpression[] fromNumberExpressions(NumberExpression[] numberExpressions) {
+        PeanoNumberExpression[] peanoNumberExpressions = new PeanoNumberExpression[numberExpressions.length];
+
+        for (int i = 0; i < numberExpressions.length; i++) {
+            peanoNumberExpressions[i] = new ConvertNumberToPeanoExpressionImpl().convert(numberExpressions[i]);
+        }
+
+        return peanoNumberExpressions;
     }
 }
