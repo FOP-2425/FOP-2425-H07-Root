@@ -5,25 +5,30 @@ import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 import java.util.function.IntPredicate;
 
 public class NumberExpressionFactory {
-    /**
-     * @return An array of number expressions representing the result of the multiplication table of the numbers 1 to 10.
-     */
-    @StudentImplementationRequired
-    public static NumberExpression[] littleMultiplicationTable() {
-        NumberExpression[] baseNumbers = new NumberExpression[10];
-        NumberExpression[] numbers = new NumberExpression[100];
 
-        for (int i = 0; i < 10; i++) {
+    /**
+     * Calulates the product of all possible pairs of numbers in the given range.
+     *
+     * @param lowerBound the lower bound of the multiplication table, inclusive
+     * @param upperBound the upper bound of the multiplication table, inclusive
+     * @return An array of number expressions representing the result of the multiplication table of the numbers from lowerBound to upperBound.
+     */
+    public static NumberExpression[] multiplicationTable(int lowerBound, int upperBound) {
+        int numberOfNumbers = upperBound - lowerBound + 1;
+        NumberExpression[] baseNumbers = new NumberExpression[numberOfNumbers];
+        NumberExpression[] numbers = new NumberExpression[numberOfNumbers * numberOfNumbers];
+
+        for (int i = lowerBound; i <= upperBound; i++) {
             // Copy to local variable to make it effectively final, so it can be used in lambda
             int finalI = i;
-            baseNumbers[i] = () -> finalI + 1;
+            baseNumbers[i - lowerBound] = () -> finalI;
         }
 
         ArithmeticExpression multiplication = (num1, num2) -> () -> num1.evaluate() * num2.evaluate();
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                numbers[i * 10 + j] = multiplication.evaluate(baseNumbers[i], baseNumbers[j]);
+        for (int i = 0; i < numberOfNumbers; i++) {
+            for (int j = 0; j < numberOfNumbers; j++) {
+                numbers[i * numberOfNumbers + j] = multiplication.evaluate(baseNumbers[i], baseNumbers[j]);
             }
         }
 
@@ -34,21 +39,22 @@ public class NumberExpressionFactory {
      * @return An array of number expressions representing the result of the modulo table of the numbers 1 to 10.
      */
     @StudentImplementationRequired
-    public static NumberExpression[] moduloTable() {
-        NumberExpression[] baseNumbers = new NumberExpression[10];
-        NumberExpression[] numbers = new NumberExpression[100];
+    public static NumberExpression[] moduloTable(int lowerBound, int upperBound) {
+        int numberOfNumbers = upperBound - lowerBound + 1;
+        NumberExpression[] baseNumbers = new NumberExpression[numberOfNumbers];
+        NumberExpression[] numbers = new NumberExpression[numberOfNumbers * numberOfNumbers];
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < numberOfNumbers; i++) {
             // Copy to local variable to make it effectively final, so it can be used in lambda
             int finalI = i;
-            baseNumbers[i] = () -> finalI + 1;
+            baseNumbers[i] = () -> finalI + lowerBound;
         }
 
         ArithmeticExpression modulo = (num1, num2) -> () -> num1.evaluate() % num2.evaluate();
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                numbers[i * 10 + j] = modulo.evaluate(baseNumbers[i], baseNumbers[j]);
+        for (int i = 0; i < numberOfNumbers; i++) {
+            for (int j = 0; j < numberOfNumbers; j++) {
+                numbers[i * numberOfNumbers + j] = modulo.evaluate(baseNumbers[i], baseNumbers[j]);
             }
         }
 
