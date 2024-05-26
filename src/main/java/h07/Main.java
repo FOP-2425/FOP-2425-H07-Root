@@ -15,7 +15,7 @@ public class Main {
      * @param args program arguments, currently ignored
      */
     public static void main(String[] args) {
-        NumberExpression[] multiplicationTable = NumberExpressionFactory.littleMultiplicationTable();
+        NumberExpression[] multiplicationTable = NumberExpressionFactory.moduloTable();
         for (NumberExpression arithmeticExpression : multiplicationTable) {
             System.out.println(arithmeticExpression.evaluate());
         }
