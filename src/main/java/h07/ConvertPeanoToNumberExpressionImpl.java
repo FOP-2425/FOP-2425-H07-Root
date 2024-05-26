@@ -5,6 +5,9 @@ import h07.Peano.PeanoNumberExpression;
 import h07.Peano.Successor;
 import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
+/**
+ * Converts a Peano number expression to a number expression.
+ */
 @StudentCreationRequired
 public class ConvertPeanoToNumberExpressionImpl implements ConvertPeanoToNumberExpression {
     @Override

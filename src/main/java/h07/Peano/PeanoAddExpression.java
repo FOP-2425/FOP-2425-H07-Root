@@ -2,6 +2,9 @@ package h07.Peano;
 
 import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
+/**
+ * Represents an addition operation in Peano arithmetic.
+ */
 @StudentCreationRequired
 public class PeanoAddExpression implements PeanoArithmeticExpression {
     @Override

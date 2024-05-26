@@ -2,6 +2,9 @@ package h07.Peano;
 
 import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
+/**
+ * Represents a subtraction operation in Peano arithmetic.
+ */
 @StudentCreationRequired
 public class PeanoSubtractionExpression implements PeanoArithmeticExpression {
     @Override

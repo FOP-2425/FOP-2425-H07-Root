@@ -2,6 +2,9 @@ package h07.Peano;
 
 import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 
+/**
+ * Represents a natural number.
+ */
 @DoNotTouch
 public abstract class NaturalNumber {
     /**

@@ -2,6 +2,9 @@ package h07;
 
 import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
+/**
+ * Represents a number expression.
+ */
 @StudentCreationRequired
 public interface NumberExpression {
     /**

@@ -4,6 +4,9 @@ import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 import java.util.function.IntPredicate;
 
+/**
+ * A factory class for creating number expressions.
+ */
 public class NumberExpressionFactory {
 
     /**
@@ -36,7 +39,11 @@ public class NumberExpressionFactory {
     }
 
     /**
-     * @return An array of number expressions representing the result of the modulo table of the numbers 1 to 10.
+     * Calulates the modulo of all possible pairs of numbers in the given range.
+     *
+     * @param lowerBound the lower bound of the modulo table, inclusive
+     * @param upperBound the upper bound of the modulo table, inclusive
+     * @return An array of number expressions representing the result of the modulo table of the numbers from lowerBound to upperBound.
      */
     @StudentImplementationRequired
     public static NumberExpression[] moduloTable(int lowerBound, int upperBound) {
@@ -63,6 +70,8 @@ public class NumberExpressionFactory {
 
     /**
      * Computes (a * (b - c) + d) % a for each element in the arrays.
+     *
+     * It is guaranteed that the arrays have the same length.
      *
      * @param a an array of number expressions
      * @param b an array of number expressions
