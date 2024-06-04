@@ -17,6 +17,7 @@ public class NumberExpressionFactory {
      * @return An array of number expressions representing the result of the
      *         multiplication table of the numbers from lowerBound to upperBound.
      */
+    @StudentImplementationRequired
     public static NumberExpression[] multiplicationTable(int lowerBound, int upperBound) {
         int numberOfNumbers = upperBound - lowerBound + 1;
         NumberExpression[] baseNumbers = new NumberExpression[numberOfNumbers];
