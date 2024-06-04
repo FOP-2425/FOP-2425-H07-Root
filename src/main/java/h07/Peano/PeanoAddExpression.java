@@ -12,12 +12,14 @@ public class PeanoAddExpression implements PeanoArithmeticExpression {
         NaturalNumber naturalNumber1 = num1.evaluate();
 
         if (naturalNumber1 instanceof Successor naturalNumber1Peano) {
-            return () -> new Successor(
-                new PeanoAddExpression().evaluate(
-                    () -> naturalNumber1Peano.predecessor,
-                    num2
-                ).evaluate()
-            );
+            return () ->  {
+                return new Successor(
+                    new PeanoAddExpression().evaluate(
+                        () -> { return naturalNumber1Peano.predecessor; },
+                        num2
+                    ).evaluate()
+                );
+            };
         } else {
             return num2;
         }
