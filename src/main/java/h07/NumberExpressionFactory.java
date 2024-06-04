@@ -30,7 +30,9 @@ public class NumberExpressionFactory {
             baseNumbers[i - lowerBound] = () -> finalI;
         }
 
-        ArithmeticExpression multiplication = (num1, num2) -> () -> num1.evaluate() * num2.evaluate();
+        ArithmeticExpression multiplication = (num1, num2) -> {
+            return () -> num1.evaluate() * num2.evaluate();
+        };
 
         for (int i = 0; i < numberOfNumbers; i++) {
             for (int j = 0; j < numberOfNumbers; j++) {
