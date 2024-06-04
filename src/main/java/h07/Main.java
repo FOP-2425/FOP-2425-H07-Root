@@ -37,11 +37,17 @@ public class Main {
         System.out.println("-----------------------------------");
     }
 
-    @StudentImplementationRequired
+    @DoNotTouch
     private static void numberExpressionMultiplicationTableTests() {
-        NumberExpression[] multiplicationTable = NumberExpressionFactory.multiplicationTable(1, 10);
-        for (NumberExpression arithmeticExpression : multiplicationTable) {
-            System.out.println(arithmeticExpression.evaluate());
+        int lowerBound = 1;
+        int upperBound = 15;
+        NumberExpression[] multiplicationTable = NumberExpressionFactory.multiplicationTable(lowerBound, upperBound);
+
+        for (int i = lowerBound; i <= upperBound; i++) {
+            for (int j = lowerBound; j <= upperBound; j++) {
+                System.out.printf("| %4s ", multiplicationTable[(i - lowerBound) * (upperBound - lowerBound + 1) + (j - lowerBound)].evaluate());
+            }
+            System.out.println("|");
         }
     }
 
