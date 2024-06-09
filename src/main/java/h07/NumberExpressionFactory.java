@@ -2,26 +2,25 @@ package h07;
 
 import java.util.function.IntPredicate;
 
+import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 
 /**
  * A factory class for creating number expressions.
  */
 public class NumberExpressionFactory {
-
     /**
-     * Calulates the product of all possible pairs of numbers in the given range.
+     * Calculates the product of all possible pairs of numbers in the given range.
      *
      * @param lowerBound the lower bound of the multiplication table, inclusive
      * @param upperBound the upper bound of the multiplication table, inclusive
      * @return An array of number expressions representing the result of the
      *         multiplication table of the numbers from lowerBound to upperBound.
      */
-    @StudentImplementationRequired
+    @DoNotTouch
     public static NumberExpression[] multiplicationTable(int lowerBound, int upperBound) {
         int numberOfNumbers = upperBound - lowerBound + 1;
         NumberExpression[] baseNumbers = new NumberExpression[numberOfNumbers];
-        NumberExpression[] numbers = new NumberExpression[numberOfNumbers * numberOfNumbers];
 
         for (int i = lowerBound; i <= upperBound; i++) {
             // Copy to local variable to make it effectively final, so it can be used in
@@ -30,17 +29,32 @@ public class NumberExpressionFactory {
             baseNumbers[i - lowerBound] = () -> finalI;
         }
 
+        return multiplicationTable(baseNumbers);
+    }
+
+
+    /**
+     * Calculates the product of all possible pairs of numbers in the given array.
+     *
+     * @param numbers the array of number expressions to calculate the multiplication table
+     * @return An array of number expressions representing the result of the
+     *         multiplication table of the given numbers.
+     */
+    @StudentImplementationRequired
+    public static NumberExpression[] multiplicationTable(NumberExpression[] numbers) {
+        NumberExpression[] multiplicationTable = new NumberExpression[numbers.length * numbers.length];
+
         ArithmeticExpression multiplication = (num1, num2) -> {
             return () -> num1.evaluate() * num2.evaluate();
         };
 
-        for (int i = 0; i < numberOfNumbers; i++) {
-            for (int j = 0; j < numberOfNumbers; j++) {
-                numbers[i * numberOfNumbers + j] = multiplication.evaluate(baseNumbers[i], baseNumbers[j]);
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = 0; j < numbers.length; j++) {
+                multiplicationTable[i * numbers.length + j] = multiplication.evaluate(numbers[i], numbers[j]);
             }
         }
 
-        return numbers;
+        return multiplicationTable;
     }
 
     /**
