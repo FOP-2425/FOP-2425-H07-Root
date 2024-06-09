@@ -67,8 +67,8 @@ public class Main {
 
     @StudentImplementationRequired
     private static void filterFoldMapTests() {
-        NumberExpression[] numbers = NumberExpressionFactory.multiplicationTable(1, 3);
-        NumberExpression[] filteredNumbers = NumberExpressionFactory.filter(numbers, n -> n % 2 == 0);
+        NumberExpression[] numbers = NumberExpressionFactory.multiplicationTable(1, 10);
+        NumberExpression[] filteredNumbers = NumberExpressionFactory.filter(numbers, n -> n % 3 == 0);
         PeanoNumberExpression[] filteredPeanoNumbers = PeanoNumberExpressionFactory
                 .fromNumberExpressions(filteredNumbers);
         PeanoNumberExpression foldedPeanoNumbers = PeanoNumberExpressionFactory.fold(filteredPeanoNumbers, Zero::new,
