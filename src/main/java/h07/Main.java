@@ -60,8 +60,10 @@ public class Main {
         PeanoNumberExpression product = new PeanoMultiplyExpression().evaluate(three, seven);
 
         System.out.println(sum.evaluate());
-        System.out.println(new ConvertPeanoToNumberExpressionImpl().convert(sum).evaluate());
         System.out.println(product.evaluate());
+
+        // Not required but can be used to convert Peano numbers to integers
+        System.out.println(new ConvertPeanoToNumberExpressionImpl().convert(sum).evaluate());
         System.out.println(new ConvertPeanoToNumberExpressionImpl().convert(product).evaluate());
     }
 
