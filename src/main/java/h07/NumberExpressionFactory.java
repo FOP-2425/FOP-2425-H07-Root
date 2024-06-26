@@ -10,30 +10,6 @@ import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
  */
 public class NumberExpressionFactory {
     /**
-     * Calculates the product of all possible pairs of numbers in the given range.
-     *
-     * @param lowerBound the lower bound of the multiplication table, inclusive
-     * @param upperBound the upper bound of the multiplication table, inclusive
-     * @return An array of number expressions representing the result of the
-     *         multiplication table of the numbers from lowerBound to upperBound.
-     */
-    @DoNotTouch
-    public static NumberExpression[] multiplicationTable(int lowerBound, int upperBound) {
-        int numberOfNumbers = upperBound - lowerBound + 1;
-        NumberExpression[] baseNumbers = new NumberExpression[numberOfNumbers];
-
-        for (int i = lowerBound; i <= upperBound; i++) {
-            // Copy to local variable to make it effectively final, so it can be used in
-            // lambda
-            int finalI = i;
-            baseNumbers[i - lowerBound] = () -> finalI;
-        }
-
-        return multiplicationTable(baseNumbers);
-    }
-
-
-    /**
      * Calculates the product of all possible pairs of numbers in the given array.
      *
      * @param numbers the array of number expressions to calculate the multiplication table
@@ -55,6 +31,29 @@ public class NumberExpressionFactory {
         }
 
         return multiplicationTable;
+    }
+
+    /**
+     * Calculates the product of all possible pairs of numbers in the given range.
+     *
+     * @param lowerBound the lower bound of the multiplication table, inclusive
+     * @param upperBound the upper bound of the multiplication table, inclusive
+     * @return An array of number expressions representing the result of the
+     *         multiplication table of the numbers from lowerBound to upperBound.
+     */
+    @DoNotTouch
+    public static NumberExpression[] multiplicationTable(int lowerBound, int upperBound) {
+        int numberOfNumbers = upperBound - lowerBound + 1;
+        NumberExpression[] baseNumbers = new NumberExpression[numberOfNumbers];
+
+        for (int i = lowerBound; i <= upperBound; i++) {
+            // Copy to local variable to make it effectively final, so it can be used in
+            // lambda
+            int finalI = i;
+            baseNumbers[i - lowerBound] = () -> finalI;
+        }
+
+        return multiplicationTable(baseNumbers);
     }
 
     /**
