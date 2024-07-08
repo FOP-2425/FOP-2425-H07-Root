@@ -1,14 +1,8 @@
 package h07;
 
+import h07.Peano.*;
 import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
-
-import h07.Peano.NaturalNumber;
-import h07.Peano.PeanoAddExpression;
-import h07.Peano.PeanoMultiplyExpression;
-import h07.Peano.PeanoNumberExpression;
-import h07.Peano.PeanoNumberExpressionFactory;
-import h07.Peano.Zero;
 
 /**
  * Main entry point in executing the program.
@@ -40,7 +34,7 @@ public class Main {
     @DoNotTouch
     private static void numberExpressionMultiplicationTableTests() {
         int lowerBound = 1;
-        int upperBound = 15;
+        int upperBound = 10;
         NumberExpression[] multiplicationTable = NumberExpressionFactory.multiplicationTable(lowerBound, upperBound);
 
         for (int i = lowerBound; i <= upperBound; i++) {
@@ -51,10 +45,13 @@ public class Main {
         }
     }
 
+    private static final NaturalNumber THREE = new Successor(new Successor(new Successor(new Zero())));
+    private static final NaturalNumber SEVEN = new Successor(new Successor(new Successor(new Successor(new Successor(new Successor(new Successor(new Zero())))))));
+
     @StudentImplementationRequired
     private static void peanoNumberExpressionTests() {
-        PeanoNumberExpression three = new ConvertNumberToPeanoExpressionImpl().convert(() -> 3);
-        PeanoNumberExpression seven = new ConvertNumberToPeanoExpressionImpl().convert(() -> 7);
+        PeanoNumberExpression three = () -> THREE;
+        PeanoNumberExpression seven = () -> SEVEN;
 
         PeanoNumberExpression sum = new PeanoAddExpression().evaluate(three, seven);
         PeanoNumberExpression product = new PeanoMultiplyExpression().evaluate(three, seven);
@@ -75,8 +72,6 @@ public class Main {
                 .fromNumberExpressions(filteredNumbers);
         PeanoNumberExpression foldedPeanoNumbers = PeanoNumberExpressionFactory.fold(filteredPeanoNumbers, Zero::new,
                 new PeanoAddExpression());
-        NaturalNumber foldedPeanoNumber = foldedPeanoNumbers.evaluate();
-        System.out.println(foldedPeanoNumber);
         int foldedNumber = new ConvertPeanoToNumberExpressionImpl().convert(foldedPeanoNumbers).evaluate();
         System.out.println(foldedNumber);
     }
