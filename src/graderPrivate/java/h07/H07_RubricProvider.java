@@ -51,7 +51,7 @@ public class H07_RubricProvider implements RubricProvider {
             ),
             criterion(
                 "Die Multiplikationstabelle gibt für lowerBound = 11 und upperBound = 20 die korrekten Werte aus."
-            )
+            ) // oder irgendwelche Werte bei denen lower bound > 1
         )
         .build();
 
@@ -65,7 +65,7 @@ public class H07_RubricProvider implements RubricProvider {
 
     private static final Criterion H7_3_1 = Criterion.builder()
         .shortDescription("H7.3.1 | PeanoAddExpression")
-        .maxPoints(4)
+        .maxPoints(5)
         .addChildCriteria(
             criterion(
                 "Die Methode evaluate gibt für X + 0 das korrekte Ergebnis zurück."
@@ -75,13 +75,13 @@ public class H07_RubricProvider implements RubricProvider {
             ),
             criterion(
                 "Die Methode evaluate gibt für X + Y das korrekte Ergebnis zurück."
-            ) // Hierfür 2 Punkte
+            ) // Hierfür 3 Punkte
         )
         .build();
 
     private static final Criterion H7_3_2 = Criterion.builder()
         .shortDescription("H7.3.2 | PeanoMultiplyExpression")
-        .maxPoints(4)
+        .maxPoints(5)
         .addChildCriteria(
             criterion(
                 "Die Methode evaluate gibt für X * 0 das korrekte Ergebnis zurück."
@@ -91,17 +91,7 @@ public class H07_RubricProvider implements RubricProvider {
             ),
             criterion(
                 "Die Methode evaluate gibt für X * Y das korrekte Ergebnis zurück."
-            ) // Hierfür 2 Punkte
-        )
-        .build();
-
-    private static final Criterion H7_3_3 = Criterion.builder()
-        .shortDescription("H7.3.3 | Testen")
-        .maxPoints(1)
-        .addChildCriteria(
-            criterion(
-                "Der Test implementiert die Berechnung für die Summe und das Produkt von 3 und 7 korrekt."
-            )
+            ) // Hierfür 3 Punkte
         )
         .build();
 
@@ -109,8 +99,7 @@ public class H07_RubricProvider implements RubricProvider {
         .shortDescription("H7.3 | Peano Arithmetik")
         .addChildCriteria(
             H7_3_1,
-            H7_3_2,
-            H7_3_3
+            H7_3_2
         )
         .build();
 
@@ -181,24 +170,13 @@ public class H07_RubricProvider implements RubricProvider {
         )
         .build();
 
-    private static final Criterion H7_4_5 = Criterion.builder()
-        .shortDescription("H7.4.5 | Testen")
-        .maxPoints(1)
-        .addChildCriteria(
-            criterion(
-                "Der Test implementiert die Berechnung für die Summe der durch 3 teilbaren Zahlen von 1 bis 10 korrekt."
-            )
-        )
-        .build();
-
     private static final Criterion H7_4 = Criterion.builder()
         .shortDescription("H7.4 | Funktionen höherer Ordnung")
         .addChildCriteria(
             H7_4_1,
             H7_4_2,
             H7_4_3,
-            H7_4_4,
-            H7_4_5
+            H7_4_4
         )
         .build();
 
