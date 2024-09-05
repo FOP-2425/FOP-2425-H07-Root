@@ -1,6 +1,6 @@
 package h07;
 
-import h07.Peano.PeanoNumberExpression;
+import h07.peano.PeanoNumberExpression;
 import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
 /**

@@ -1,6 +1,6 @@
 package h07;
 
-import h07.Peano.*;
+import h07.peano.*;
 import org.tudalgo.algoutils.student.annotation.DoNotTouch;
 import org.tudalgo.algoutils.student.annotation.StudentImplementationRequired;
 

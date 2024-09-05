@@ -1,4 +1,4 @@
-package h07.Peano;
+package h07.peano;
 
 import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 

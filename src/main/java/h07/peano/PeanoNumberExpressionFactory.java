@@ -1,4 +1,4 @@
-package h07.Peano;
+package h07.peano;
 
 import h07.ConvertNumberToPeanoExpressionImpl;
 import h07.NumberExpression;

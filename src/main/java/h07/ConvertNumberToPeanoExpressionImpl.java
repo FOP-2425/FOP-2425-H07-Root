@@ -1,8 +1,8 @@
 package h07;
 
-import h07.Peano.PeanoNumberExpression;
-import h07.Peano.Zero;
-import h07.Peano.Successor;
+import h07.peano.PeanoNumberExpression;
+import h07.peano.Zero;
+import h07.peano.Successor;
 import org.tudalgo.algoutils.student.annotation.StudentCreationRequired;
 
 /**
