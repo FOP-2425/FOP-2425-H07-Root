@@ -128,7 +128,7 @@ public class H07_RubricProvider implements RubricProvider {
             ),
             criterion(
                 "Die Methode convert von ConvertNumberToPeanoExpressionImpl gibt für X das korrekte Ergebnis zurück."
-            ), // 2 Punkte
+            ), // 1 Punkte
             criterion(
                 "Die Klasse ConvertPeanoToNumberExpressionImpl wurde korrekt erstellt."
             ),
@@ -137,7 +137,10 @@ public class H07_RubricProvider implements RubricProvider {
             ),
             criterion(
                 "Die Methode convert von ConvertPeanoToNumberExpressionImpl gibt für X das korrekte Ergebnis zurück."
-            ) // 2 Punkte
+            ), // 2 Punkte
+            criterion(
+                "Die Methode fromNumberExpressions in PeanoNumberExpressionFactory wandelt einen Array von NumberExpressions korrekt um."
+            )
         )
         .build();
 
