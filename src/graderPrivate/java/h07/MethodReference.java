@@ -1,12 +1,17 @@
 package h07;
 
 import h07.peano.NaturalNumber;
-import org.mockito.Mockito;
 import org.tudalgo.algoutils.tutor.general.assertions.Context;
 import org.tudalgo.algoutils.tutor.general.match.Matcher;
-import org.tudalgo.algoutils.tutor.general.reflections.*;
+import org.tudalgo.algoutils.tutor.general.reflections.BasicConstructorLink;
+import org.tudalgo.algoutils.tutor.general.reflections.BasicTypeLink;
+import org.tudalgo.algoutils.tutor.general.reflections.ConstructorLink;
+import org.tudalgo.algoutils.tutor.general.reflections.Link;
+import org.tudalgo.algoutils.tutor.general.reflections.MethodLink;
+import org.tudalgo.algoutils.tutor.general.reflections.Modifier;
+import org.tudalgo.algoutils.tutor.general.reflections.TypeLink;
+import org.tudalgo.algoutils.tutor.general.reflections.WithModifiers;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 import java.util.Arrays;
 import java.util.List;
@@ -14,19 +19,54 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static h07.ClassReference.*;
+import static h07.ClassReference.ARITHMETIC_EXPRESSION;
+import static h07.ClassReference.CONVERT_NUMBER_TO_PEANO_EXPRESSION;
+import static h07.ClassReference.CONVERT_PEANO_TO_NUMBER_EXPRESSION;
+import static h07.ClassReference.NUMBER_EXPRESSION;
+import static h07.ClassReference.PEANO_ARITHMETIC_EXPRESSION;
+import static h07.ClassReference.PEANO_NUMBER_EXPRESSION;
 import static org.mockito.Mockito.mock;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.*;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertNotNull;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertTrue;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.fail;
 import static org.tudalgo.algoutils.tutor.general.reflections.Modifier.PUBLIC;
 
 public class MethodReference {
 
-    public static final MethodReference NUMBER_EXPRESSION_EVALUATE = new MethodReference(NUMBER_EXPRESSION, "evaluate", new Modifier[]{PUBLIC}, int.class, new Class[]{});
-    public static final MethodReference PEANO_NUMBER_EXPRESSION_EVALUATE = new MethodReference(PEANO_NUMBER_EXPRESSION, "evaluate", new Modifier[]{PUBLIC}, NaturalNumber.class, new Class[]{});
-    public static final MethodReference ARITHMETIC_EXPRESSION_EVALUATE = new MethodReference(ARITHMETIC_EXPRESSION, "evaluate", new Modifier[]{PUBLIC}, NUMBER_EXPRESSION.getLink().reflection(), NUMBER_EXPRESSION, NUMBER_EXPRESSION);
-    public static final MethodReference PEANO_ARITHMETIC_EXPRESSION_EVALUATE = new MethodReference(PEANO_ARITHMETIC_EXPRESSION, "evaluate", new Modifier[]{PUBLIC}, PEANO_NUMBER_EXPRESSION.getLink().reflection(), PEANO_NUMBER_EXPRESSION, PEANO_NUMBER_EXPRESSION);
-    public static final MethodReference CONVERT_NUMBER_TO_PEANO_EXPRESSION_CONVERT = new MethodReference(CONVERT_NUMBER_TO_PEANO_EXPRESSION, "convert", new Modifier[]{PUBLIC}, PEANO_NUMBER_EXPRESSION.getLink().reflection(), NUMBER_EXPRESSION);
-    public static final MethodReference CONVERT_PEANO_TO_NUMBER_EXPRESSION_CONVERT = new MethodReference(CONVERT_PEANO_TO_NUMBER_EXPRESSION, "convert", new Modifier[]{PUBLIC}, NUMBER_EXPRESSION.getLink().reflection(), PEANO_NUMBER_EXPRESSION);
+    public static final MethodReference NUMBER_EXPRESSION_EVALUATE =
+        new MethodReference(NUMBER_EXPRESSION, "evaluate", new Modifier[] {PUBLIC}, int.class, new Class[] {});
+    public static final MethodReference PEANO_NUMBER_EXPRESSION_EVALUATE =
+        new MethodReference(PEANO_NUMBER_EXPRESSION, "evaluate", new Modifier[] {PUBLIC}, NaturalNumber.class, new Class[] {});
+    public static final MethodReference ARITHMETIC_EXPRESSION_EVALUATE = new MethodReference(ARITHMETIC_EXPRESSION,
+        "evaluate",
+        new Modifier[] {PUBLIC},
+        NUMBER_EXPRESSION.getLink().reflection(),
+        NUMBER_EXPRESSION,
+        NUMBER_EXPRESSION
+    );
+    public static final MethodReference PEANO_ARITHMETIC_EXPRESSION_EVALUATE = new MethodReference(PEANO_ARITHMETIC_EXPRESSION,
+        "evaluate",
+        new Modifier[] {PUBLIC},
+        PEANO_NUMBER_EXPRESSION.getLink().reflection(),
+        PEANO_NUMBER_EXPRESSION,
+        PEANO_NUMBER_EXPRESSION
+    );
+    public static final MethodReference CONVERT_NUMBER_TO_PEANO_EXPRESSION_CONVERT = new MethodReference(
+        CONVERT_NUMBER_TO_PEANO_EXPRESSION,
+        "convert",
+        new Modifier[] {PUBLIC},
+        PEANO_NUMBER_EXPRESSION.getLink().reflection(),
+        NUMBER_EXPRESSION
+    );
+    public static final MethodReference CONVERT_PEANO_TO_NUMBER_EXPRESSION_CONVERT = new MethodReference(
+        CONVERT_PEANO_TO_NUMBER_EXPRESSION,
+        "convert",
+        new Modifier[] {PUBLIC},
+        NUMBER_EXPRESSION.getLink().reflection(),
+        PEANO_NUMBER_EXPRESSION
+    );
 
     private final boolean isConstructor;
     private final String name;
@@ -137,7 +177,8 @@ public class MethodReference {
 
             boolean hasCorrectParams = Arrays.stream(parameters).allMatch(
                 param -> actualParameters.stream().anyMatch(
-                    actualParam -> param == null || (actualParam.isAssignableFrom(param) && occurrencesActual.getOrDefault(actualParam, 0) >= occurrencesExpected.getOrDefault(param, 0))
+                    actualParam -> param == null || (actualParam.isAssignableFrom(param)
+                        && occurrencesActual.getOrDefault(actualParam, 0) >= occurrencesExpected.getOrDefault(param, 0))
                 )
             );
             if (parameters.length != actualParameters.size() || !hasCorrectParams) {
@@ -195,7 +236,8 @@ public class MethodReference {
 
             boolean hasCorrectParams = Arrays.stream(parameters).allMatch(
                 param -> actualParameters.stream().anyMatch(
-                    actualParam -> param == null || (actualParam.isAssignableFrom(param) && occurrencesActual.getOrDefault(actualParam, 0) >= occurrencesExpected.getOrDefault(param, 0))
+                    actualParam -> param == null || (actualParam.isAssignableFrom(param)
+                        && occurrencesActual.getOrDefault(actualParam, 0) >= occurrencesExpected.getOrDefault(param, 0))
                 )
             );
 
@@ -328,7 +370,11 @@ public class MethodReference {
             Arrays.stream(parameter).map(o -> o != null ? o.getClass() : null).toArray(Class[]::new)
         );
         if (instance == null && !(link instanceof ConstructorLink)) {
-            throw new IllegalArgumentException("Could not invoke %s.%s() as object that the function should have been called on is null.".formatted(clazz.getName(), name));
+            throw new IllegalArgumentException(
+                "Could not invoke %s.%s() as object that the function should have been called on is null.".formatted(
+                    clazz.getName(),
+                    name
+                ));
         }
         if (link instanceof MethodLink l) {
             return l.invoke(instance, parameter);

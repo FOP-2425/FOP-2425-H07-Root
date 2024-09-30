@@ -1,7 +1,6 @@
 package h07;
 
 import h07.peano.NaturalNumber;
-import h07.peano.PeanoNumberExpression;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
@@ -10,26 +9,25 @@ import org.tudalgo.algoutils.tutor.general.assertions.Context;
 import org.tudalgo.algoutils.tutor.general.json.JsonParameterSet;
 import org.tudalgo.algoutils.tutor.general.json.JsonParameterSetTest;
 import org.tudalgo.algoutils.tutor.general.reflections.BasicMethodLink;
-import org.tudalgo.algoutils.tutor.general.reflections.MethodLink;
 import spoon.reflect.code.CtLambda;
 import spoon.reflect.declaration.CtMethod;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static h07.ClassReference.*;
+import static h07.ClassReference.PEANO_ADD_EXPRESSION;
+import static h07.ClassReference.PEANO_NUMBER_EXPRESSION;
 import static h07.H07Test.getCtElements;
-import static h07.MethodReference.*;
+import static h07.MethodReference.PEANO_ARITHMETIC_EXPRESSION_EVALUATE;
+import static h07.MethodReference.PEANO_NUMBER_EXPRESSION_EVALUATE;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.emptyContext;
 
 @TestForSubmission
 public class PeanoAddExpressionTest {
 
-    @Test //TODO
+    @Test
     public void testDefinition() {
         ClassReference.PEANO_ADD_EXPRESSION.assertCorrectlyDefined();
     }
@@ -88,15 +86,16 @@ public class PeanoAddExpressionTest {
     @Test
     public void testEvaluateRequirements() {
         CtMethod<?> evaluate =
-            ((BasicMethodLink) PEANO_ARITHMETIC_EXPRESSION_EVALUATE.getLink(PEANO_ADD_EXPRESSION.getLink().reflection(),
+            ((BasicMethodLink) PEANO_ARITHMETIC_EXPRESSION_EVALUATE.getLink(
+                PEANO_ADD_EXPRESSION.getLink().reflection(),
                 PEANO_NUMBER_EXPRESSION.getLink().reflection(),
                 PEANO_NUMBER_EXPRESSION.getLink().reflection()
             )).getCtElement();
 
         getCtElements(List.of(PEANO_ADD_EXPRESSION.getLink().reflection()), CtLambda.class, evaluate)
             .forEach(ctLambda -> {
-                String body = ctLambda.toStringDebug();
-                Context context = contextBuilder().add("Lambda", body).build();
+                    String body = ctLambda.toStringDebug();
+                    Context context = contextBuilder().add("Lambda", body).build();
 
                     Assertions2.assertNotNull(
                         ctLambda.getBody(),

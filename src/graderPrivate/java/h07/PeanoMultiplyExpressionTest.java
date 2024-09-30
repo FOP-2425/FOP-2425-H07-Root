@@ -1,8 +1,6 @@
 package h07;
 
 import h07.peano.NaturalNumber;
-import h07.peano.PeanoMultiplyExpression;
-import h07.peano.PeanoNumberExpression;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
@@ -16,7 +14,6 @@ import spoon.reflect.declaration.CtMethod;
 
 import java.util.List;
 
-import static h07.ClassReference.PEANO_ADD_EXPRESSION;
 import static h07.ClassReference.PEANO_MULTIPLY_EXPRESSION;
 import static h07.ClassReference.PEANO_NUMBER_EXPRESSION;
 import static h07.H07Test.getCtElements;

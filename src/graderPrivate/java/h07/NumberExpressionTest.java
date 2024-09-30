@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 
 @TestForSubmission
-public class NumberExpressionTest extends H07Test{
+public class NumberExpressionTest extends H07Test {
 
     @Test
     public void testDefinition() {

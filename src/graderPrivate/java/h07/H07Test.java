@@ -32,7 +32,7 @@ public class H07Test {
     }
 
     public static <T extends CtElement> Stream<T> getCtElements(final List<Class<?>> classesToSearch, final Class<T> toSearch,
-                                                                 final CtBodyHolder bodyHolder) {
+                                                                final CtBodyHolder bodyHolder) {
         return bodyHolder.getElements(new TypeFilter<>(CtElement.class) {
                 @Override
                 public boolean matches(final CtElement element) {

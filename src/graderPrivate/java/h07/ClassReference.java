@@ -10,7 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.*;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertNotNull;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertTrue;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.emptyContext;
 
 
 public class ClassReference {
@@ -18,15 +22,44 @@ public class ClassReference {
     public static final List<String> PREDEFINED_PACKAGES = List.of("h07", "h07.Peano", "h07.peano");
 
     public static final ClassReference NUMBER_EXPRESSION = new ClassReference("h07", "NumberExpression", Link.Kind.INTERFACE);
-    public static final ClassReference PEANO_NUMBER_EXPRESSION = new ClassReference("h07.peano", "PeanoNumberExpression", Link.Kind.INTERFACE);
-    public static final ClassReference ARITHMETIC_EXPRESSION = new ClassReference("h07", "ArithmeticExpression", Link.Kind.INTERFACE);
-    public static final ClassReference PEANO_ARITHMETIC_EXPRESSION = new ClassReference("h07.peano", "PeanoArithmeticExpression", Link.Kind.INTERFACE);
-    public static final ClassReference PEANO_ADD_EXPRESSION = new ClassReference("h07.peano", "PeanoAddExpression", Link.Kind.CLASS, new BasicTypeLink[]{PEANO_ARITHMETIC_EXPRESSION.getLink()}, Modifier.PUBLIC, Modifier.NON_FINAL);
-    public static final ClassReference PEANO_MULTIPLY_EXPRESSION = new ClassReference("h07.peano", "PeanoMultiplyExpression", Link.Kind.CLASS, new BasicTypeLink[]{PEANO_ARITHMETIC_EXPRESSION.getLink()}, Modifier.PUBLIC, Modifier.NON_FINAL);
-    public static final ClassReference CONVERT_NUMBER_TO_PEANO_EXPRESSION = new ClassReference("h07", "ConvertNumberToPeanoExpression", Link.Kind.INTERFACE);
-    public static final ClassReference CONVERT_PEANO_TO_NUMBER_EXPRESSION = new ClassReference("h07", "ConvertPeanoToNumberExpression", Link.Kind.INTERFACE);
-    public static final ClassReference CONVERT_NUMBER_TO_PEANO_EXPRESSION_IMPL = new ClassReference("h07", "ConvertNumberToPeanoExpressionImpl", Link.Kind.CLASS, new BasicTypeLink[]{CONVERT_NUMBER_TO_PEANO_EXPRESSION.getLink()}, Modifier.PUBLIC, Modifier.NON_FINAL);
-    public static final ClassReference CONVERT_PEANO_TO_NUMBER_EXPRESSION_IMPL = new ClassReference("h07", "ConvertPeanoToNumberExpressionImpl", Link.Kind.CLASS, new BasicTypeLink[]{CONVERT_PEANO_TO_NUMBER_EXPRESSION.getLink()}, Modifier.PUBLIC, Modifier.NON_FINAL);
+    public static final ClassReference PEANO_NUMBER_EXPRESSION =
+        new ClassReference("h07.peano", "PeanoNumberExpression", Link.Kind.INTERFACE);
+    public static final ClassReference ARITHMETIC_EXPRESSION =
+        new ClassReference("h07", "ArithmeticExpression", Link.Kind.INTERFACE);
+    public static final ClassReference PEANO_ARITHMETIC_EXPRESSION =
+        new ClassReference("h07.peano", "PeanoArithmeticExpression", Link.Kind.INTERFACE);
+    public static final ClassReference PEANO_ADD_EXPRESSION = new ClassReference("h07.peano",
+        "PeanoAddExpression",
+        Link.Kind.CLASS,
+        new BasicTypeLink[] {PEANO_ARITHMETIC_EXPRESSION.getLink()},
+        Modifier.PUBLIC,
+        Modifier.NON_FINAL
+    );
+    public static final ClassReference PEANO_MULTIPLY_EXPRESSION = new ClassReference("h07.peano",
+        "PeanoMultiplyExpression",
+        Link.Kind.CLASS,
+        new BasicTypeLink[] {PEANO_ARITHMETIC_EXPRESSION.getLink()},
+        Modifier.PUBLIC,
+        Modifier.NON_FINAL
+    );
+    public static final ClassReference CONVERT_NUMBER_TO_PEANO_EXPRESSION =
+        new ClassReference("h07", "ConvertNumberToPeanoExpression", Link.Kind.INTERFACE);
+    public static final ClassReference CONVERT_PEANO_TO_NUMBER_EXPRESSION =
+        new ClassReference("h07", "ConvertPeanoToNumberExpression", Link.Kind.INTERFACE);
+    public static final ClassReference CONVERT_NUMBER_TO_PEANO_EXPRESSION_IMPL = new ClassReference("h07",
+        "ConvertNumberToPeanoExpressionImpl",
+        Link.Kind.CLASS,
+        new BasicTypeLink[] {CONVERT_NUMBER_TO_PEANO_EXPRESSION.getLink()},
+        Modifier.PUBLIC,
+        Modifier.NON_FINAL
+    );
+    public static final ClassReference CONVERT_PEANO_TO_NUMBER_EXPRESSION_IMPL = new ClassReference("h07",
+        "ConvertPeanoToNumberExpressionImpl",
+        Link.Kind.CLASS,
+        new BasicTypeLink[] {CONVERT_PEANO_TO_NUMBER_EXPRESSION.getLink()},
+        Modifier.PUBLIC,
+        Modifier.NON_FINAL
+    );
 
     private final String pack;
     private final String name;
@@ -57,10 +90,6 @@ public class ClassReference {
             }
             link = null;
 
-//            link = (BasicTypeLink) BasicPackageLink.of(pack).getType(Tests.stringMatcher(name));
-//            if (link != null && link.reflection().getName().endsWith("Test")) {
-//                link = null;
-//            }
         } catch (Exception ignored) {
         }
     }

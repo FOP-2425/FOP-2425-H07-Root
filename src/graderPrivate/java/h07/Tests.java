@@ -1,6 +1,10 @@
 package h07;
 
-import org.tudalgo.algoutils.tutor.general.match.*;
+import org.tudalgo.algoutils.tutor.general.match.BasicStringMatchers;
+import org.tudalgo.algoutils.tutor.general.match.Match;
+import org.tudalgo.algoutils.tutor.general.match.Matcher;
+import org.tudalgo.algoutils.tutor.general.match.MatcherFactories;
+import org.tudalgo.algoutils.tutor.general.match.Stringifiable;
 
 public class Tests {
 

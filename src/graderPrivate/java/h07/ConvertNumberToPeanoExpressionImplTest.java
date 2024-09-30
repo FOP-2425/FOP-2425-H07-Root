@@ -15,19 +15,12 @@ import spoon.reflect.declaration.CtMethod;
 import java.util.List;
 
 import static h07.ClassReference.CONVERT_NUMBER_TO_PEANO_EXPRESSION_IMPL;
-import static h07.ClassReference.CONVERT_PEANO_TO_NUMBER_EXPRESSION_IMPL;
 import static h07.ClassReference.NUMBER_EXPRESSION;
-import static h07.ClassReference.PEANO_MULTIPLY_EXPRESSION;
-import static h07.ClassReference.PEANO_NUMBER_EXPRESSION;
 import static h07.H07Test.getCtElements;
 import static h07.MethodReference.CONVERT_NUMBER_TO_PEANO_EXPRESSION_CONVERT;
-import static h07.MethodReference.CONVERT_PEANO_TO_NUMBER_EXPRESSION_CONVERT;
-import static h07.MethodReference.NUMBER_EXPRESSION_EVALUATE;
-import static h07.MethodReference.PEANO_ARITHMETIC_EXPRESSION_EVALUATE;
 import static h07.MethodReference.PEANO_NUMBER_EXPRESSION_EVALUATE;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
 

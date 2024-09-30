@@ -1,7 +1,6 @@
 package h07;
 
 import h07.peano.PeanoNumberExpressionFactory;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import org.tudalgo.algoutils.tutor.general.assertions.Context;
@@ -12,11 +11,7 @@ import org.tudalgo.algoutils.tutor.general.reflections.BasicTypeLink;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.IntPredicate;
 
 import static h07.ClassReference.NUMBER_EXPRESSION;
 import static h07.ClassReference.PEANO_ARITHMETIC_EXPRESSION;
@@ -68,7 +63,12 @@ public class PeanoNumberExpressionFactoryTest {
         Object initialPeano = NumberConverter.toPeanoNumberExpression(initial);
 
         Object peanoOperation = mock(PEANO_ARITHMETIC_EXPRESSION.getLink().reflection());
-        when(PEANO_ARITHMETIC_EXPRESSION_EVALUATE.invoke(peanoOperation.getClass(), peanoOperation, any(), any())).thenAnswer(mock -> {
+        when(PEANO_ARITHMETIC_EXPRESSION_EVALUATE.invoke(
+            peanoOperation.getClass(),
+            peanoOperation,
+            any(),
+            any()
+        )).thenAnswer(mock -> {
             Object peanoVal1 = mock.getArgument(0);
             Object peanoVal2 = mock.getArgument(1);
 
@@ -93,7 +93,8 @@ public class PeanoNumberExpressionFactoryTest {
                 peanoOperation
             );
         assertNotNull(actualPeano, params.toContext(), r -> "Fold returned null.");
-        int actual = NumberConverter.toNaturalNumber(PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(actualPeano.getClass(), actualPeano));
+        int actual =
+            NumberConverter.toNaturalNumber(PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(actualPeano.getClass(), actualPeano));
 
         assertEquals(expected, actual, params.toContext(), r -> "Returned value of fold does not match expected.");
     }

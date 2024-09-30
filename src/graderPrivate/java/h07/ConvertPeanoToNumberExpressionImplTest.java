@@ -1,6 +1,5 @@
 package h07;
 
-import h07.peano.NaturalNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
@@ -14,16 +13,11 @@ import spoon.reflect.declaration.CtMethod;
 
 import java.util.List;
 
-import static h07.ClassReference.CONVERT_NUMBER_TO_PEANO_EXPRESSION_IMPL;
 import static h07.ClassReference.CONVERT_PEANO_TO_NUMBER_EXPRESSION_IMPL;
-import static h07.ClassReference.NUMBER_EXPRESSION;
-import static h07.ClassReference.PEANO_ADD_EXPRESSION;
 import static h07.ClassReference.PEANO_NUMBER_EXPRESSION;
 import static h07.H07Test.getCtElements;
-import static h07.MethodReference.CONVERT_NUMBER_TO_PEANO_EXPRESSION_CONVERT;
 import static h07.MethodReference.CONVERT_PEANO_TO_NUMBER_EXPRESSION_CONVERT;
 import static h07.MethodReference.NUMBER_EXPRESSION_EVALUATE;
-import static h07.MethodReference.PEANO_ARITHMETIC_EXPRESSION_EVALUATE;
 import static h07.MethodReference.PEANO_NUMBER_EXPRESSION_EVALUATE;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.mock;
@@ -65,9 +59,12 @@ public class ConvertPeanoToNumberExpressionImplTest {
         int x = params.getInt("x");
 
         Object numberExpression = mock(PEANO_NUMBER_EXPRESSION.getLink().reflection());
-        when(PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(numberExpression.getClass(), numberExpression)).thenReturn(NumberConverter.toPeanoNumber(x));
+        when(PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(
+            numberExpression.getClass(),
+            numberExpression
+        )).thenReturn(NumberConverter.toPeanoNumber(x));
 
-        Object mock =  mock(CONVERT_PEANO_TO_NUMBER_EXPRESSION_IMPL.getLink().reflection(), CALLS_REAL_METHODS);
+        Object mock = mock(CONVERT_PEANO_TO_NUMBER_EXPRESSION_IMPL.getLink().reflection(), CALLS_REAL_METHODS);
         Object returned = CONVERT_PEANO_TO_NUMBER_EXPRESSION_CONVERT.invoke(mock.getClass(), mock, numberExpression);
 
         int actual = NUMBER_EXPRESSION_EVALUATE.invoke(returned.getClass(), returned);
