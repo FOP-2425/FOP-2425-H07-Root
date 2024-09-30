@@ -1,0 +1,34 @@
+[
+  {
+    "inputs": [
+      1,2,3,4
+    ],
+    "initial": "0",
+    "operation": "+",
+    "expected": "10"
+  },
+  {
+    "inputs": [
+      2,3,4,5
+    ],
+    "initial": "1",
+    "operation": "*",
+    "expected": "120"
+  },
+  {
+    "inputs": [
+      2,3,4,5
+    ],
+    "initial": "0",
+    "operation": "*",
+    "expected": "0"
+  },
+  {
+    "inputs": [
+      2,4,6
+    ],
+    "initial": "2",
+    "operation": "*2*",
+    "expected": "768"
+  }
+]

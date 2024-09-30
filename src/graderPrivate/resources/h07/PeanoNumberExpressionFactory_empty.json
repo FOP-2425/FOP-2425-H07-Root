@@ -1,0 +1,26 @@
+[
+  {
+    "inputs": [
+
+    ],
+    "initial": "5",
+    "operation": "+",
+    "expected": "5"
+  },
+  {
+    "inputs": [
+
+    ],
+    "initial": "10",
+    "operation": "*",
+    "expected": "10"
+  },
+  {
+    "inputs": [
+
+    ],
+    "initial": "2",
+    "operation": "*2*",
+    "expected": "2"
+  }
+]
