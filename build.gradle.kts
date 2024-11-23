@@ -34,4 +34,13 @@ jagr {
             rubricProviderName.set("h07.H07_RubricProvider")
         }
     }
+    graders {
+        val graderPrivate by creating {
+            graderName.set("H07-Private")
+            rubricProviderName.set("h07.H07_RubricProvider")
+            configureDependencies {
+                implementation(libs.algoutils.tutor)
+            }
+        }
+    }
 }
