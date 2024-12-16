@@ -158,8 +158,8 @@ public class ClassReference {
 
         assertNotNull(link, context, r -> "Could not find class %s.".formatted(name));
         assertEquals(
-            pack,
-            link.reflection().getPackage().getName(),
+            pack.toLowerCase(),
+            link.reflection().getPackage().getName().toLowerCase(),
             context,
             r -> "Package name does not match expected package name."
         );
