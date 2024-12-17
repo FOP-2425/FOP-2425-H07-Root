@@ -229,7 +229,6 @@ public class H07_RubricProvider implements RubricProvider {
             ),
             criterion(
                 "Die Methode convert von ConvertNumberToPeanoExpressionImpl gibt für X das korrekte Ergebnis zurück.",
-                2,
                 JUnitTestRef.ofMethod(() -> ConvertNumberToPeanoExpressionImplTest.class.getMethod(
                     "testEvaluate_X",
                     JsonParameterSet.class
@@ -253,12 +252,6 @@ public class H07_RubricProvider implements RubricProvider {
                     "testEvaluate_X",
                     JsonParameterSet.class
                 ))
-            ),
-            criterion(
-                "Die Methode fromNumberExpressions in PeanoNumberExpressionFactory wandelt einen Array von NumberExpressions "
-                    + "korrekt um."
-//,
-                //JUnitTestRef.ofMethod(() -> PeanoNumberExpressionFactoryTest.class.getMethod("", JsonParameterSet.class))
             )
         )
         .build();
