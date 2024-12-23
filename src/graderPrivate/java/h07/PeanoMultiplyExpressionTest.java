@@ -1,6 +1,5 @@
 package h07;
 
-import h07.peano.NaturalNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
@@ -71,7 +70,7 @@ public class PeanoMultiplyExpressionTest {
         Object mock = mock(PEANO_MULTIPLY_EXPRESSION.getLink().reflection(), CALLS_REAL_METHODS);
         Object returned = PEANO_ARITHMETIC_EXPRESSION_EVALUATE.invoke(mock.getClass(), mock, xPeano, yPeano);
 
-        NaturalNumber actualPeano = PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(returned.getClass(), returned);
+        Object actualPeano = PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(returned.getClass(), returned);
 
         int actual = NumberConverter.toNaturalNumber(actualPeano);
 

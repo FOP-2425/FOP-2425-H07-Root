@@ -10,11 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertNotNull;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertTrue;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.emptyContext;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.*;
 
 
 public class ClassReference {
@@ -31,14 +27,14 @@ public class ClassReference {
     public static final ClassReference PEANO_ADD_EXPRESSION = new ClassReference("h07.peano",
         "PeanoAddExpression",
         Link.Kind.CLASS,
-        new BasicTypeLink[] {PEANO_ARITHMETIC_EXPRESSION.getLink()},
+        new BasicTypeLink[] {PEANO_ARITHMETIC_EXPRESSION.link},
         Modifier.PUBLIC,
         Modifier.NON_FINAL
     );
     public static final ClassReference PEANO_MULTIPLY_EXPRESSION = new ClassReference("h07.peano",
         "PeanoMultiplyExpression",
         Link.Kind.CLASS,
-        new BasicTypeLink[] {PEANO_ARITHMETIC_EXPRESSION.getLink()},
+        new BasicTypeLink[] {PEANO_ARITHMETIC_EXPRESSION.link},
         Modifier.PUBLIC,
         Modifier.NON_FINAL
     );
@@ -49,16 +45,36 @@ public class ClassReference {
     public static final ClassReference CONVERT_NUMBER_TO_PEANO_EXPRESSION_IMPL = new ClassReference("h07",
         "ConvertNumberToPeanoExpressionImpl",
         Link.Kind.CLASS,
-        new BasicTypeLink[] {CONVERT_NUMBER_TO_PEANO_EXPRESSION.getLink()},
+        new BasicTypeLink[] {CONVERT_NUMBER_TO_PEANO_EXPRESSION.link},
         Modifier.PUBLIC,
         Modifier.NON_FINAL
     );
     public static final ClassReference CONVERT_PEANO_TO_NUMBER_EXPRESSION_IMPL = new ClassReference("h07",
         "ConvertPeanoToNumberExpressionImpl",
         Link.Kind.CLASS,
-        new BasicTypeLink[] {CONVERT_PEANO_TO_NUMBER_EXPRESSION.getLink()},
+        new BasicTypeLink[] {CONVERT_PEANO_TO_NUMBER_EXPRESSION.link},
         Modifier.PUBLIC,
         Modifier.NON_FINAL
+    );
+
+    public static final ClassReference ZERO = new ClassReference("h07.peano",
+        "Zero",
+        Link.Kind.CLASS
+    );
+
+    public static final ClassReference SUCCESSOR = new ClassReference("h07.peano",
+        "Successor",
+        Link.Kind.CLASS
+    );
+
+    public static final ClassReference NATURAL_NUMBER = new ClassReference("h07.peano",
+        "NaturalNumber",
+        Link.Kind.CLASS
+    );
+
+    public static final ClassReference PEANO_NUMBER_EXPRESSION_FACTORY = new ClassReference("h07.peano",
+        "PeanoNumberExpressionFactory",
+        Link.Kind.CLASS
     );
 
     private final String pack;
@@ -81,7 +97,6 @@ public class ClassReference {
         this.modifiers = modifiers;
 
         try {
-
             for (String packageName : PREDEFINED_PACKAGES) {
                 link = (BasicTypeLink) BasicPackageLink.of(packageName).getType(Tests.stringMatcher(name));
                 if (link != null && !link.reflection().getName().endsWith("Test")) {

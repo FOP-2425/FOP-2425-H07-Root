@@ -1,6 +1,5 @@
 package h07;
 
-import h07.peano.PeanoNumberExpressionFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.sourcegrade.jagr.api.rubric.TestForSubmission;
 import org.tudalgo.algoutils.tutor.general.assertions.Context;
@@ -8,6 +7,7 @@ import org.tudalgo.algoutils.tutor.general.json.JsonParameterSet;
 import org.tudalgo.algoutils.tutor.general.json.JsonParameterSetTest;
 import org.tudalgo.algoutils.tutor.general.match.BasicStringMatchers;
 import org.tudalgo.algoutils.tutor.general.reflections.BasicTypeLink;
+import org.tudalgo.algoutils.tutor.general.reflections.MethodLink;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -22,9 +22,7 @@ import static h07.MethodReference.PEANO_NUMBER_EXPRESSION_EVALUATE;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertNotNull;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.*;
 
 @TestForSubmission
 public class PeanoNumberExpressionFactoryTest {
@@ -85,13 +83,19 @@ public class PeanoNumberExpressionFactoryTest {
             return NumberConverter.toPeanoNumberExpression(result);
         });
 
-        Object actualPeano = BasicTypeLink.of(PeanoNumberExpressionFactory.class)
-            .getMethod(BasicStringMatchers.identical("fold"))
-            .invokeStatic(
+        MethodLink foldLink = BasicTypeLink.of(ClassReference.PEANO_NUMBER_EXPRESSION_FACTORY.getLink().reflection())
+            .getMethod(BasicStringMatchers.identical("fold"));
+
+        if (foldLink == null){
+            fail(emptyContext(), r -> "Could not find method PeanoNumberExpressionFactory.fold()");
+        }
+
+        Object actualPeano = foldLink.invokeStatic(
                 peanoInputs.toArray((Object[]) Array.newInstance(PEANO_NUMBER_EXPRESSION.getLink().reflection(), 0)),
                 initialPeano,
                 peanoOperation
             );
+
         assertNotNull(actualPeano, params.toContext(), r -> "Fold returned null.");
         int actual =
             NumberConverter.toNaturalNumber(PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(actualPeano.getClass(), actualPeano));
@@ -119,9 +123,15 @@ public class PeanoNumberExpressionFactoryTest {
             baseNumbers.add(expression);
         });
 
-        List<Object> actualExpressions = List.of(BasicTypeLink.of(PeanoNumberExpressionFactory.class)
-            .getMethod(BasicStringMatchers.identical("fromNumberExpressions"))
-            .invokeStatic(
+        MethodLink fromNumberExpressionsLink = BasicTypeLink.of(ClassReference.PEANO_NUMBER_EXPRESSION_FACTORY.getLink().reflection())
+            .getMethod(BasicStringMatchers.identical("fromNumberExpressions"));
+
+        if (fromNumberExpressionsLink == null){
+            fail(emptyContext(), r -> "Could not find method PeanoNumberExpressionFactory.fromNumberExpressions()");
+        }
+
+        List<Object> actualExpressions = List.of(
+            fromNumberExpressionsLink.invokeStatic(
                 (Object) baseNumbers.toArray((Object[]) Array.newInstance(NUMBER_EXPRESSION.getLink().reflection(), 0))
             )
         );

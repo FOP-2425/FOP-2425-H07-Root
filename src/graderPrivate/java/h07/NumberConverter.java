@@ -1,8 +1,6 @@
 package h07;
 
-import h07.peano.NaturalNumber;
-import h07.peano.Successor;
-import h07.peano.Zero;
+import java.lang.reflect.InvocationTargetException;
 
 import static h07.ClassReference.NUMBER_EXPRESSION;
 import static h07.ClassReference.PEANO_NUMBER_EXPRESSION;
@@ -13,17 +11,23 @@ import static org.mockito.Mockito.when;
 
 public class NumberConverter {
 
-    public static int toNaturalNumber(NaturalNumber peanoNumber) {
+    public static int toNaturalNumber(Object peanoNumber) {
         String representation = peanoNumber.toString();
         return representation.length() - representation.replace("S", "").length();
     }
 
-    public static NaturalNumber toPeanoNumber(int number) {
-        NaturalNumber peanoNumber = new Zero();
-        for (int i = 0; i < number; i++) {
-            peanoNumber = new Successor(peanoNumber);
+    public static Object toPeanoNumber(int number) {
+        Object peanoNumber = null;
+        try {
+            peanoNumber = ClassReference.ZERO.getLink().reflection().getConstructor().newInstance();
+
+            for (int i = 0; i < number; i++) {
+                peanoNumber = ClassReference.SUCCESSOR.getLink().reflection().getConstructor(ClassReference.NATURAL_NUMBER.getLink().reflection()).newInstance(peanoNumber);
+            }
+            return peanoNumber;
+        } catch (InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
-        return peanoNumber;
     }
 
     public static Object toNumberExpression(int number) throws Throwable {
@@ -34,8 +38,7 @@ public class NumberConverter {
 
     public static Object toPeanoNumberExpression(int number) throws Throwable {
         Object numberExpression = mock(PEANO_NUMBER_EXPRESSION.getLink().reflection());
-        when(PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(numberExpression.getClass(), numberExpression)).thenReturn(toPeanoNumber(
-            number));
+        when(PEANO_NUMBER_EXPRESSION_EVALUATE.invoke(numberExpression.getClass(), numberExpression)).thenReturn(toPeanoNumber(number));
         return numberExpression;
     }
 }

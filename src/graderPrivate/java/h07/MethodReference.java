@@ -1,6 +1,5 @@
 package h07;
 
-import h07.peano.NaturalNumber;
 import org.tudalgo.algoutils.tutor.general.assertions.Context;
 import org.tudalgo.algoutils.tutor.general.match.Matcher;
 import org.tudalgo.algoutils.tutor.general.reflections.BasicConstructorLink;
@@ -38,7 +37,7 @@ public class MethodReference {
     public static final MethodReference NUMBER_EXPRESSION_EVALUATE =
         new MethodReference(NUMBER_EXPRESSION, "evaluate", new Modifier[] {PUBLIC}, int.class, new Class[] {});
     public static final MethodReference PEANO_NUMBER_EXPRESSION_EVALUATE =
-        new MethodReference(PEANO_NUMBER_EXPRESSION, "evaluate", new Modifier[] {PUBLIC}, NaturalNumber.class, new Class[] {});
+        new MethodReference(PEANO_NUMBER_EXPRESSION, "evaluate", new Modifier[] {PUBLIC}, ClassReference.NATURAL_NUMBER.getLink().reflection(), new Class[] {});
     public static final MethodReference ARITHMETIC_EXPRESSION_EVALUATE = new MethodReference(ARITHMETIC_EXPRESSION,
         "evaluate",
         new Modifier[] {PUBLIC},

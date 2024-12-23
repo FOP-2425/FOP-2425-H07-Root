@@ -214,7 +214,7 @@ public class H07_RubricProvider implements RubricProvider {
 
     private static final Criterion H7_4_2 = Criterion.builder()
         .shortDescription("H7.4.2 | Conversions Implementieren")
-        .maxPoints(8)
+        .maxPoints(7)
         .addChildCriteria(
             criterion(
                 "Die Klasse ConvertNumberToPeanoExpressionImpl wurde korrekt erstellt.",

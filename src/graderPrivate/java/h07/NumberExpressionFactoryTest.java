@@ -10,6 +10,7 @@ import org.tudalgo.algoutils.tutor.general.json.JsonParameterSetTest;
 import org.tudalgo.algoutils.tutor.general.match.BasicStringMatchers;
 import org.tudalgo.algoutils.tutor.general.reflections.BasicMethodLink;
 import org.tudalgo.algoutils.tutor.general.reflections.BasicTypeLink;
+import org.tudalgo.algoutils.tutor.general.reflections.MethodLink;
 import spoon.reflect.code.CtLambda;
 import spoon.reflect.declaration.CtMethod;
 
@@ -27,9 +28,7 @@ import static h07.H07Test.getCtElements;
 import static h07.MethodReference.NUMBER_EXPRESSION_EVALUATE;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.assertEquals;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.contextBuilder;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.emptyContext;
+import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.*;
 
 @TestForSubmission
 public class NumberExpressionFactoryTest {
@@ -77,14 +76,26 @@ public class NumberExpressionFactoryTest {
             baseNumbers.add(expression);
         }
 
-        return List.of(BasicMethodLink.of(Arrays.stream(NumberExpressionFactory.class.getMethods())
-                .filter(method -> method.getParameterCount() == 1 && method.getName().equals("multiplicationTable"))
-                .findFirst()
-                .get())
-            .invokeStatic((Object) (baseNumbers.toArray((Object[]) Array.newInstance(
-                NUMBER_EXPRESSION.getLink().reflection(),
-                0
-            )))));
+        MethodLink multiplicationLink = BasicMethodLink.of(Arrays.stream(NumberExpressionFactory.class.getMethods())
+            .filter(method -> method.getParameterCount() == 1 && method.getName().equals("multiplicationTable"))
+            .findFirst()
+            .get());
+
+        if (multiplicationLink == null) {
+            throw new RuntimeException("Could not find method NumberExpressionFactory.multiplicationTable()");
+        }
+
+        Object returned = multiplicationLink.invokeStatic((Object) (baseNumbers.toArray((Object[]) Array.newInstance(
+            NUMBER_EXPRESSION.getLink().reflection(),
+            0
+        ))));
+
+        try {
+            return List.of((Object[]) returned);
+        } catch (NullPointerException e) {
+            fail(emptyContext(), r -> "multiplicationTable() returned null or an array containing null");
+        }
+        return null;
     }
 
     @ParameterizedTest
@@ -137,9 +148,15 @@ public class NumberExpressionFactoryTest {
             baseNumbers.add(expression);
         });
 
-        List<Object> actualExpressions = List.of(BasicTypeLink.of(NumberExpressionFactory.class)
-            .getMethod(BasicStringMatchers.identical("filter"))
-            .invokeStatic(
+        MethodLink filterLink = BasicTypeLink.of(NumberExpressionFactory.class)
+                    .getMethod(BasicStringMatchers.identical("filter"));
+
+        if (filterLink == null) {
+            fail(emptyContext(), r -> "Could not find method NumberExpressionFactory.filter()");
+        }
+
+        List<Object> actualExpressions = List.of(
+            filterLink.invokeStatic(
                 baseNumbers.toArray((Object[]) Array.newInstance(NUMBER_EXPRESSION.getLink().reflection(), 0)),
                 predicate
             )
