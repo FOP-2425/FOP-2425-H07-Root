@@ -1,12 +1,12 @@
 package h07;
 
+import static org.tudalgo.algoutils.tutor.general.jagr.RubricUtils.criterion;
+
 import org.sourcegrade.jagr.api.rubric.Criterion;
 import org.sourcegrade.jagr.api.rubric.JUnitTestRef;
 import org.sourcegrade.jagr.api.rubric.Rubric;
 import org.sourcegrade.jagr.api.rubric.RubricProvider;
 import org.tudalgo.algoutils.tutor.general.json.JsonParameterSet;
-
-import static org.tudalgo.algoutils.tutor.general.jagr.RubricUtils.criterion;
 
 public class H07_RubricProvider implements RubricProvider {
 
@@ -90,6 +90,7 @@ public class H07_RubricProvider implements RubricProvider {
 
     private static final Criterion H7_2 = Criterion.builder()
             .shortDescription("H7.2 | Multiplikationstabelle")
+            .minPoints(0)
             .addChildCriteria(
                     H7_2_1)
             .build();
@@ -283,6 +284,7 @@ public class H07_RubricProvider implements RubricProvider {
 
     private static final Criterion H7_4 = Criterion.builder()
             .shortDescription("H7.4 | Funktionen höherer Ordnung")
+            .minPoints(0)
             .addChildCriteria(
                     H7_4_1,
                     H7_4_2,
